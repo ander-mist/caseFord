@@ -9,15 +9,27 @@ asc = {
     "F": "70",
 }
 
+def multiplica_por_dois(codigo_com_numeros):
+    codigo_multiplicado = list()
+    for num in codigo_com_numeros:
+        codigo_multiplicado.append(int(num) * 2)
+    return codigo_multiplicado
 
-def transformaNumeroEmLetra(codigo):
+
+def transformaLetraEmNumero(codigo):
     cripto = list()
+    flag = True
     for i in codigo:
         for j in asc:
-            cripto.append(i)
             if i == j:
-                i = j
+                flag = False
+                cripto.append(asc[j])
+        if flag != False:
+            cripto.append(i)
+        flag = True 
     return cripto
 
-if __name__ == 'main':
-    print('teste')
+def criptografa(codigo):
+    codigo_com_numeros = transformaLetraEmNumero(codigo)
+    numeros_multiplicados = multiplica_por_dois(codigo_com_numeros)
+    return numeros_multiplicados
